@@ -75,11 +75,9 @@ vector<string> Dictionary::add_trigram_suggestion(vector<string> sugg, const str
 	{
 	trigrams.push_back(word.substr(i, 3));
 	}
-	for(unsigned int i=0; i!=words_by_length[word.size()].size(); ++i){
-		if(words_by_length[word.size()].at(i).get_matches(trigrams) > 0){
-		}
-		if(size/2 <= words_by_length[word.size()].at(i).get_matches(trigrams)){
-			//	sugg.push_back(w.get_word());
+	for(Word w: words_by_length[word.size()]){
+		if(size/2 <= w.Word::get_matches(trigrams)){
+			sugg.push_back(w.get_word());
 		}
 	}
 	for(Word w: words_by_length[word.size()+1]){
