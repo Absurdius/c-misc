@@ -7,6 +7,7 @@ using namespace std;
 Tagremover::Tagremover(istream &is)
 {
   outline = "";
+  string str ((istream_iterator<char>(is), istream_iterator<char>()));
   char c;
   while(is.get())
   {
@@ -19,5 +20,5 @@ Tagremover::Tagremover(istream &is)
 
 void Tagremover::print(ostream &os)
 {
-  cout << outline;
+  os& << outline;
 }
