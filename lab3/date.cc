@@ -8,9 +8,9 @@ using namespace std;
 
 //operator override. Use & to indicate reference. 
 //use variable name without & in operator method.
-//returns an istream to allow caining of severat dates
+//returns an istream to allow chaining of several dates
 //Date value is "returned implicitly"
-istream& operator >> (istream &i, Date date)
+istream& operator >> (istream& i, Date& date)
 {
 	int y; 
 	i >> y;
@@ -24,9 +24,10 @@ istream& operator >> (istream &i, Date date)
 	return i;
 }
 
-ostream& operator << (ostream &o, Date date)
+ostream& operator << (ostream& o, Date date)
 {
-	return o << date.getYear() << "-" << date.getMonth() << "-" << date.getDay(); 
+	o << date.getYear() << "-" << date.getMonth() << "-" << date.getDay(); 
+	return o;
 }
 
 Date::Date() {
