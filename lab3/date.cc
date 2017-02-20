@@ -24,7 +24,7 @@ istream& operator >> (istream& i, Date& date)
 	return i;
 }
 
-ostream& operator << (ostream& o, Date date)
+ostream& operator << (ostream& o, Date& date)
 {
 	o << date.getYear() << "-" << date.getMonth() << "-" << date.getDay(); 
 	return o;

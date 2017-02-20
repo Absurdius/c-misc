@@ -1,5 +1,7 @@
 #ifndef DATE_H
 #define DATE_H
+#include <istream>
+#include <ostream>
 
 class Date {
 public:
@@ -15,5 +17,8 @@ private:
 	int day;   // the day (1-..)
 	static int daysPerMonth[12]; // number of days in each month
 };
+
+std::istream& operator >> (std::istream& i, Date& date);
+std::ostream& operator << (std::ostream& o, Date& date);
 
 #endif

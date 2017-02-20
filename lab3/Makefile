@@ -17,12 +17,12 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = sieve
+PROGS = date_test
 
 all: $(PROGS)
 
 # Targets rely on implicit rules for compiling and linking
-sieve: sieve.o
+date_test: date.o date_test.o
 
 # Phony targets
 .PHONY: all clean
