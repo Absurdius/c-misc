@@ -1,8 +1,28 @@
 #include <iostream>
 #include <iomanip> // for setw and setfill
 #include "date.h"
+#include <sstream>
+#include <stdexcept>
 
 using namespace std;
+
+//function template
+template <typename T>
+string to_string(T d)
+{
+	stringstream ss;
+	ss << d;
+	return ss.str();
+}
+//casting method
+template <typename T>
+T string_cast (string in)
+{
+	T result;
+	stringstream ss = stringstream(in);
+	ss >> result;
+	return result;
+}
 
 /*
  * Prints the date d in the format yyyy-mm-dd. You shall replace this
@@ -16,7 +36,24 @@ void print(const Date& d) {
 }
 
 int main() {
-	
+// template testing
+double d = 1.234;
+Date today = Date();
+string sd = to_string(d);
+string st = to_string(today);
+cout << sd << "\n" << st;
+
+//cast testing
+try {
+int i = string_cast<int>("123");
+double d = string_cast<double>("12.34");
+Date date = string_cast<Date>("2015-01-10");
+} catch (std::invalid_argument& e) {
+cout << "Error: " << e.what() << endl;
+}
+
+
+/*
 	bool cont = true;
 	while (cont) {
 		cout << "Type a date: ";
@@ -34,8 +71,8 @@ int main() {
 			cout << "Output: " << aDate << endl;
 		}
 	}
-	
-	
+*/
+
 	// Check 'next' by creating an object describing today's date, then
 	// printing dates more than a month ahead
 	cout << "--- Today and more than a month ahead:" << endl;
@@ -47,7 +84,7 @@ int main() {
 		print(d1);
 		cout << endl;
 	}
-	
+
 	// Check so 'next' functions correctly from one year to the next
 	cout << "--- New Year's Eve and the next day:" << endl;
 	Date d2(2013, 12, 31);
