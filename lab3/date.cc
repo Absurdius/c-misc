@@ -2,23 +2,25 @@
 #include "date.h"
 #include <istream>
 #include <ostream>
+#include <sstream>
 
 int Date::daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 using namespace std;
 
-//operator override. Use & to indicate reference. 
+
+//operator override. Use & to indicate reference.
 //use variable name without & in operator method.
 //returns an istream to allow chaining of several dates
 //Date value is "returned implicitly"
 istream& operator >> (istream& i, Date& date)
 {
-	int y; 
+	int y;
 	i >> y;
 	i.ignore(1,'-');
-	int m; 
+	int m;
 	i >> m;
 	i.ignore(1,'-');
-	int d; 
+	int d;
 	i >> d;
 	date = Date(y, m, d);
 	return i;
@@ -26,7 +28,7 @@ istream& operator >> (istream& i, Date& date)
 
 ostream& operator << (ostream& o, Date& date)
 {
-	o << date.getYear() << "-" << date.getMonth() << "-" << date.getDay(); 
+	o << date.getYear() << "-" << date.getMonth() << "-" << date.getDay();
 	return o;
 }
 
@@ -43,27 +45,27 @@ Date::Date(int y, int m, int d)
 	year = y, month = m, day = d;
 }
 
-int Date::getYear() const 
+int Date::getYear() const
 {
 	return year;
 }
 
-int Date::getMonth() const 
+int Date::getMonth() const
 {
 	return month;
 }
 
-int Date::getDay() const 
+int Date::getDay() const
 {
 	return day;
 }
 
-void Date::next() 
+void Date::next()
 {
-	day++; 
+	day++;
 	if(day > daysPerMonth[month])
 	{
-		day = 1; 
+		day = 1;
 		month++;
 		if(month > 12)
 		{
