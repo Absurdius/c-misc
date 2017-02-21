@@ -25,7 +25,7 @@ void Tagremover::print(ostream& out) {
   }else{
   while (getline(instream, line)) input += line + "\n";
   }
-  input = regex_replace(input, regex("<[^<]*>[>$]"), "");
+  input = regex_replace(input, regex("<[^<>$]*>"), "");
   /* input = regex_replace(input, regex("<[^<>$]*>"), ""); */
   input = regex_replace(input, regex("&lt;"), "<");
   input = regex_replace(input, regex("&gt;"), ">");
