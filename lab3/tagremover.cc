@@ -25,11 +25,14 @@ void Tagremover::print(ostream& out) {
   }else{
   while (getline(instream, line)) change += line + "\n";
   }
-  change = regex_replace(change, regex("<[^<>$]*>"), "");
-  change = regex_replace(change, regex("&lt;"), "<");
-  change = regex_replace(change, regex("&gt;"), ">");
+  /*change = regex_replace(change, regex("<[^<>$]*>"), ""); Fungerar, men varför?*/
+  /*change = regex_replace(change, regex("<[.]*?>"), "") TAR INTE NEWLINE*/
   change = regex_replace(change, regex("&nbsp;"), " ");
   change = regex_replace(change, regex("&amp;"), "&");
+  change = regex_replace(change, regex("<[\\s\\S]*?>"), ""); /*Fungerar, dock jobbigt med dubbelklammer*/
+  change = regex_replace(change, regex("&lt;"), "<");
+  change = regex_replace(change, regex("&gt;"), ">");
+
 
   out << change;
 }
