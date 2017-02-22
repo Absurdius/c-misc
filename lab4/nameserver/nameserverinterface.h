@@ -34,6 +34,13 @@ public:
 	 * server.
 	 */
 	virtual IPAddress lookup(const HostName&) const = 0;
+	
+	// struct lets you move these variables together.
+	struct na_pair ()
+	{
+		HostHame name; 
+		IPAddress address; 
+	}
 };
 
 #endif

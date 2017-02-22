@@ -9,19 +9,25 @@ class VNS : public NameServerInterface
     virtual bool remove(const HostName&) = 0;
     virtual IPAddress lookup(const HostName&) const = 0;
   private:
-    unsorted_vector data;
+    vector data;
 }
 
 VNS::VNS()
 {
-data = unsorted_vector<HostName, IPAddress>
+data = vector<na_pair>
 }
 
 void VNS::insert(const HostName&, const IPAddress&)
-{}
+{
+	na_pair in; 
+	in.name = HostName;
+	in.address = IPAddress;
+	vector.push_back(in);
+}
 
 bool VNS::remove(const HostName&)
-{}
+{
+}
 
 IPAddress VNS::lookup(const HostName&)
 {}
