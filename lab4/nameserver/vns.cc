@@ -6,14 +6,12 @@
 using namespace std;
 
 VNS::VNS()
-{
-data = vector<pair<HostName, IPAddress>>;
-}
+{}
 
 // ugly code but gets job done
 void VNS::insert(const HostName& name, const IPAddress& addr)
 {
-	vector.push_back(pair(name, addr));
+	data.emplace_back(pair<HostName, IPAddress>(name, addr));
 }
 
 //elemt: position where element recdies
@@ -21,15 +19,15 @@ void VNS::insert(const HostName& name, const IPAddress& addr)
 //find_if returns
 bool VNS::remove(const HostName& name)
 {
-	elemt = find(name);
-	if(elemt = data.end){return false;}
-	delete elemt;
+	auto elemt = find(data.begin(), data.end(), name);
+	if(elemt == data.end()){return false;}
+	data.erase(elemt);
 	return true;
 }
 
-IPAddress VNS::lookup(const HostName&)
+IPAddress VNS::lookup(const HostName& name) const
 {
-	vector<na_pair>::iterator elemt;
-	elemt = find_if(data.begin, data.end, exists);
-	return *elemt.address;
+	auto elemt =  find(data.begin(), data.end(), name);
+	if(elemt == data.end()){return NON_EXISTING_ADDRESS;}
+	return elemt->second;
 }

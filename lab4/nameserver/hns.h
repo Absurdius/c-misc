@@ -7,9 +7,10 @@
 #include <vector>
 
 
-class HNS
+class HNS : public NameServerInterface
 {
   public:
+    HNS(const int size);
     virtual void insert(const HostName&, const IPAddress&) ;
   	virtual bool remove(const HostName&) ;
     virtual IPAddress lookup(const HostName&) const ;

@@ -6,9 +6,10 @@
 #define MNS_H
 #include <map>
 
-class MNS
+class MNS : public NameServerInterface
 {
   public:
+    MNS();
     virtual void insert(const HostName&, const IPAddress&);
     virtual bool remove(const HostName&);
     virtual IPAddress lookup(const HostName&) const;

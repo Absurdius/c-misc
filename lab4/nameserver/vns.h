@@ -7,10 +7,11 @@
 
 #include <vector>
 
-class VNS
+class VNS : public NameServerInterface
 {
   public:
   //  virtual ~NameServerInterface() = default;
+    VNS();
     virtual void insert(const HostName&, const IPAddress&);
     virtual bool remove(const HostName&) ;
     virtual IPAddress lookup(const HostName&) const;
