@@ -5,40 +5,35 @@
 
 using namespace std;
 
-MNS::MNS()
+MNS::MNS(){}
+
+MNS::~MNS()
 {
-data = map<pair<HostName, IPAddress>>;
+	data.clear();
 }
 
 // ugly code but gets job done
-void MNS::insert(const HostName&, const IPAddress&)
+void MNS::insert(const HostName& name, const IPAddress& addr)
 {
-	na_pair in;
-	in.name = HostName;
-	in.address = IPAddress;
-	data.insert(in);
+	data[name] = addr;
 }
 
 //elemt: position where element recdies
 //elemt is a pointer... i think
 //find_if returns
-bool MNS::remove(const HostName&)
+bool MNS::remove(const HostName& name)
 {
-	map<na_pair>::iterator elemt;
-	elemt = find_if(data.begin, data.end, exists);
-	if(elemt = data.end){return false;}
-	delete *elemt;
-	return true;
+		auto it = data.find(hn);
+		if (it != data.end()) {
+			server.erase(it);
+			return true;
+		}
+		return false;
 }
 
-IPAddress MNS::lookup(const HostName&)
+IPAddress MNS::lookup(const HostName& name)
 {
-	map<na_pair>::iterator elemt;
-	elemt = find_if(data.begin, data.end, exists);
-	return *elemt.address;
-}
-//check that the element exists
-private bool exists (const HostName&, na_pair element)
-{
-	return (HostName == element.name);
+	auto itr = data.find(name);
+	if (itr == data.last()) {retun itr->address; }
+	return 0;
 }

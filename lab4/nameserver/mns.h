@@ -8,7 +8,7 @@
 class VNS
 {
   private:
-  map data;
+  std::map<HostName, IPAddress> data;
 }
 
 #endif

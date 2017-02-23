@@ -5,10 +5,7 @@
 
 using namespace std;
 
-VNS::VNS()
-{
-data = vector<vector<na_pair>>;
-}
+VNS::VNS(){}
 
 // ugly code but gets job done
 void VNS::insert(const HostName&, const IPAddress&)

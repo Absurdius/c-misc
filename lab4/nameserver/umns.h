@@ -8,7 +8,7 @@
 class VNS
 {
   private:
-  unordered_map data;
+  std::unordered_map data<HostName, IPAddress>;
 }
 
 #endif

@@ -7,38 +7,28 @@ using namespace std;
 
 VNS::VNS()
 {
-data = unordered_map<na_pair>;
 }
 
 // ugly code but gets job done
-void VNS::insert(const HostName&, const IPAddress&)
+void VNS::insert(const HostName& name, const IPAddress& addr)
 {
-	na_pair in;
-	in.name = HostName;
-	in.address = IPAddress;
-	data.insert(in);
+	data[name] = addr;
 }
 
 //elemt: position where element recdies
 //elemt is a pointer... i think
 //find_if returns
-bool VNS::remove(const HostName&)
+bool VNS::remove(const HostName& name)
 {
-	unordered_map<na_pair>::iterator elemt;
-	elemt = find_if(data.begin, data.end, exists);
-	if(elemt = data.end){return false;}
+	auto elemt = find(name);
+	if(elemt == data.end){return false;}
 	delete *elemt;
 	return true;
 }
 
-IPAddress VNS::lookup(const HostName&)
+IPAddress VNS::lookup(const HostName& name)
 {
-	unordered_map<na_pair>::iterator elemt;
-	elemt = find_if(data.begin, data.end, exists);
-	return *elemt.address;
-}
-//check that the element exists
-private bool exists (const HostName&, na_pair element)
-{
-	return (HostName == element.name);
+	auto itr = data.find(name);
+	if (itr == data.last()) {retun itr->address; }
+	return 0;
 }
