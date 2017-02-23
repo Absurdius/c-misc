@@ -1,13 +1,13 @@
 #include "nameserverinterface.h"
-#include "vns.h"
-#include <vector>
+#include "umns.h"
+#include <unordered_map>
 #include <algorithm>
 
 using namespace std;
 
 VNS::VNS()
 {
-data = vector<na_pair>;
+data = unordered_map<na_pair>;
 }
 
 // ugly code but gets job done
@@ -16,7 +16,7 @@ void VNS::insert(const HostName&, const IPAddress&)
 	na_pair in;
 	in.name = HostName;
 	in.address = IPAddress;
-	vector.push_back(in);
+	data.insert(in);
 }
 
 //elemt: position where element recdies
@@ -24,7 +24,7 @@ void VNS::insert(const HostName&, const IPAddress&)
 //find_if returns
 bool VNS::remove(const HostName&)
 {
-	vector<na_pair>::iterator elemt;
+	unordered_map<na_pair>::iterator elemt;
 	elemt = find_if(data.begin, data.end, exists);
 	if(elemt = data.end){return false;}
 	delete *elemt;
@@ -33,7 +33,7 @@ bool VNS::remove(const HostName&)
 
 IPAddress VNS::lookup(const HostName&)
 {
-	vector<na_pair>::iterator elemt;
+	unordered_map<na_pair>::iterator elemt;
 	elemt = find_if(data.begin, data.end, exists);
 	return *elemt.address;
 }

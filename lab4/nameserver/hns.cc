@@ -7,7 +7,7 @@ using namespace std;
 
 VNS::VNS()
 {
-data = vector<na_pair>;
+data = vector<vector<na_pair>>;
 }
 
 // ugly code but gets job done
