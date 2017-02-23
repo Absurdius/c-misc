@@ -25,7 +25,7 @@ void Tagremover::print(ostream& out) {
   }else{
   while (getline(instream, line)) change += line + "\n";
   }
-  /*change = regex_replace(change, regex("<[^<>$]*>"), ""); Fungerar, men varför?*/
+  /*change = regex_replace(change, regex("<[^<>]*>"), ""); Fungerar, men varför? */
   /*change = regex_replace(change, regex("<[.]*?>"), "") TAR INTE NEWLINE*/
   change = regex_replace(change, regex("&nbsp;"), " ");
   change = regex_replace(change, regex("&amp;"), "&");
