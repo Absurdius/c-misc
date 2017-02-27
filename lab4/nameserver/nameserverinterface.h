@@ -6,10 +6,22 @@
 #define NAME_SERVER_INTERFACE_H
 
 #include <string>
+#include <utility> 
 
 using HostName = std::string;
 using IPAddress = unsigned int;
 const IPAddress NON_EXISTING_ADDRESS = 0;
+
+bool operator==(std::pair<HostName, IPAddress> a, std::pair<HostName, IPAddress> b)
+{
+	return a.first == b.first; 
+}
+
+bool operator== (std::pair<HostName, IPAddress> na_pair, const std::string str)
+{
+	return na_pair.first == str; 
+}
+
 
 class NameServerInterface {
 public:

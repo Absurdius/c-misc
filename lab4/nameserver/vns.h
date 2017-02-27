@@ -16,7 +16,7 @@ class VNS : public NameServerInterface
     virtual bool remove(const HostName&) ;
     virtual IPAddress lookup(const HostName&) const;
   private:
-    //does not name a type !!!
+
   std::vector<std::pair<HostName, IPAddress>> data;
 };
 

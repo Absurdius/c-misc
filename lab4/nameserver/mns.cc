@@ -34,6 +34,6 @@ bool MNS::remove(const HostName& name)
 IPAddress MNS::lookup(const HostName& name)
 {
 	auto itr = data.find(name);
-	if (itr == data.last()) {retun itr->address; }
-	return 0;
+	if (itr == data.last()) {return NON_EXISTING_ADDRESS;}
+	return itr->second;
 }

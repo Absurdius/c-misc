@@ -2,6 +2,7 @@
 #include "vns.h"
 #include <vector>
 #include <algorithm>
+#include <utility> 
 
 using namespace std;
 
@@ -27,7 +28,8 @@ bool VNS::remove(const HostName& name)
 
 IPAddress VNS::lookup(const HostName& name) const
 {
-	auto elemt =  find(data.begin(), data.end(), name);
-	if(elemt == data.end()){return NON_EXISTING_ADDRESS;}
-	return elemt->second;
+	auto elemt = pair<HostName, IPAddress>(name, NON_EXISTING_ADDRESS);
+	auto itr = find(data.begin(), data.end(), elemt);
+	if (itr == data.end()) {return NON_EXISTING_ADDRESS;}
+	return itr->second;
 }
