@@ -20,7 +20,8 @@ void VNS::insert(const HostName& name, const IPAddress& addr)
 //find_if returns
 bool VNS::remove(const HostName& name)
 {
-	auto elemt = find(data.begin(), data.end(), name);
+	auto x = pair<HostName, IPAddress>(name, NON_EXISTING_ADDRESS);
+	auto elemt = find(data.begin(), data.end(), x);
 	if(elemt == data.end()){return false;}
 	data.erase(elemt);
 	return true;
