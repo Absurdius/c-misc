@@ -12,41 +12,36 @@ HNS::HNS(int size)
 }
 
 // ugly code but gets job done
-void HNS::insert(const HostName& name, const IPAddress&)
+void HNS::insert(const HostName& name, const IPAddress& adress)
 {
 	hash<string> hashed;
 	size_t hash = hashed(name) % table_size;
-	while (server[hash].first != "") hash = (hash + 1) % table_size;
-	server[hash] = make_pair(hn, adress);
+	while (data[hash].first != "") hash = (hash + 1) % table_size;
+	data[hash] = make_pair(name, adress);
 }
 
 //elemt: position where element recdies
 //elemt is a pointer... i think
 //find_if returns
-bool HNS::remove(const HostName&)
+bool HNS::remove(const HostName& name)
 {
 	std::hash<string> hasher;
-		size_t hash = hasher(hn) % table_size;
-		while (server[hash].first != hn && server[hash].first != "") hash = (hash + 1) % table_size;
-		if (server[hash].first == ""){
+		size_t hash = hasher(name) % table_size;
+		while (data[hash].first != name && data[hash].first != "") hash = (hash + 1) % table_size;
+		if (data[hash].first == ""){
 			return false;
 		}
-		server[hash].first = "";
+		data[hash].first = "";
 return true;
 }
 
-IPAddress HNS::lookup(const HostName&)
+IPAddress HNS::lookup(const HostName& name) const
 {
 	std::hash<string> hasher;
-			size_t hash = hasher(hn) % table_size;
-			while (server[hash].first != hn && server[hash].first != "") hash = (hash + 1) % table_size;
-			if (server[hash].first == ""){
+			size_t hash = hasher(name) % table_size;
+			while (data[hash].first != name && data[hash].first != "") hash = (hash + 1) % table_size;
+			if (data[hash].first == ""){
 				return NON_EXISTING_ADDRESS;
 			}
-	return server[hash].second;
-}
-//check that the element exists
-private bool exists (const HostName&, na_pair element)
-{
-
+	return data[hash].second;
 }

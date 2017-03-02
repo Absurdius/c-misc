@@ -5,12 +5,12 @@
 
 using namespace std;
 
-VNS::VNS()
+UMNS::UMNS()
 {
 }
 
 // ugly code but gets job done
-void VNS::insert(const HostName& name, const IPAddress& addr)
+void UMNS::insert(const HostName& name, const IPAddress& addr)
 {
 	data[name] = addr;
 }
@@ -18,17 +18,19 @@ void VNS::insert(const HostName& name, const IPAddress& addr)
 //elemt: position where element recdies
 //elemt is a pointer... i think
 //find_if returns
-bool VNS::remove(const HostName& name)
+bool UMNS::remove(const HostName& name)
 {
-	auto elemt = find(name);
-	if(elemt == data.end){return false;}
-	delete *elemt;
+	auto target = pair<HostName, IPAddress>(name, NON_EXISTING_ADDRESS);
+	auto elemt = find(data.begin(), data.end(), target);
+	if(elemt == data.end()){return false;}
+	data.erase(elemt);
 	return true;
 }
 
-IPAddress VNS::lookup(const HostName& name)
+IPAddress UMNS::lookup(const HostName& name) const
 {
-	auto itr = data.find(name);
-	if (itr == data.last()) {return NON_EXISTING_ADDRESS;}
+	auto target = pair<HostName, IPAddress>(name, NON_EXISTING_ADDRESS);
+	auto itr = find(data.begin(), data.end(), target);
+	if (itr == data.end()) {return NON_EXISTING_ADDRESS;}
 	return itr->second;
 }
